@@ -41,10 +41,10 @@ JSON.parse()         // decode payload React Server Component Next.js
 
 ```
 webdracin/
-├── scrape.js          # file utama
+├── scrape.js          
 ├── README.md
 ├── LICENSE
-└── out/               # JSON hasil scrape (--out menulis ke sini)
+└── out/
     ├── list.json
     ├── watch.json
     └── test_log.json
@@ -258,7 +258,5 @@ Scraper ini membantumu? Traktir kopi:
 <div align="center">
 
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://warungerik.com/payment)
-
-**[warungerik.com/payment](https://warungerik.com/payment)**
 
 </div>
