@@ -29,18 +29,6 @@
 | **Subtitle** | Setiap episode membawa track subtitle Indonesia kalau ada. |
 | **Output JSON** | Cetak ke stdout atau tulis ke file lewat `--out`. |
 
-## Teknologi
-
-<div align="center">
-
-![Node.js](https://skillicons.dev/icons?i=nodejs&theme=dark)
-![JavaScript](https://skillicons.dev/icons?i=js&theme=dark)
-![JSON](https://img.shields.io/badge/JSON-000000?style=flat&logo=json&logoColor=white)
-![Regex](https://img.shields.io/badge/Regex-222222?style=flat&logo=gnubash&logoColor=white)
-![Next.js](https://img.shields.io/badge/Next.js_RSC-000000?style=flat&logo=nextdotjs&logoColor=white)
-
-</div>
-
 Tiga fungsi bawaan Node mengerjakan semua:
 
 ```js
