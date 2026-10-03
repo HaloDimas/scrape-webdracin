@@ -6,8 +6,21 @@
   "rewrites": [
     {
       "source": "/classic/api/:path*",
-      "destination": "/api/:path*"
+      "destination": "/api/wd/:path*"
     },
+    { "source": "/api/health", "destination": "/api/wd/health" },
+    { "source": "/api/cache-clear", "destination": "/api/wd/cache-clear" },
+    { "source": "/api/platforms", "destination": "/api/wd/platforms" },
+    { "source": "/api/platform-status", "destination": "/api/wd/platform-status" },
+    { "source": "/api/list", "destination": "/api/wd/list" },
+    { "source": "/api/all", "destination": "/api/wd/all" },
+    { "source": "/api/search", "destination": "/api/wd/search" },
+    { "source": "/api/drama", "destination": "/api/wd/drama" },
+    { "source": "/api/watch", "destination": "/api/wd/watch" },
+    { "source": "/api/episode", "destination": "/api/wd/episode" },
+    { "source": "/api/full", "destination": "/api/wd/full" },
+    { "source": "/api/proxy", "destination": "/api/wd/proxy" },
+    { "source": "/api/img", "destination": "/api/wd/img" },
     { "source": "/search", "destination": "/index.html" },
     { "source": "/favorites", "destination": "/index.html" },
     { "source": "/history", "destination": "/index.html" },

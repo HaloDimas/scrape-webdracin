@@ -1,4 +1,4 @@
-import { handleCors, send, UA } from "./_lib/common.js";
+import { handleCors, send, UA } from "../lib/wd.js";
 
 // Vercel port of supabase/functions/dramabox-proxy (Deno edge function).
 // Same query interface so the DramaStream frontend works unchanged:

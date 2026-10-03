@@ -63,7 +63,7 @@ Lihat `.env.example`.
 ```
 .
 ├── api/                      # Vercel serverless functions: CUMA 2 (aman untuk Hobby plan!)
-│   ├── [...all].js          # Catch-all router → semua endpoint /api/* webdracin di bawah
+│   ├── wd/[action].js       # Satu function untuk semua /api/* webdracin (via rewrite di vercel.json)
 │   └── dramabox-proxy.js     # GET /api/dramabox-proxy?... (pengganti Supabase edge fn)
 ├── lib/
 │   └── wd.js                 # Implementasi backend webdracin (di luar api/ agar tidak dihitung jadi function)

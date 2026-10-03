@@ -1,9 +1,8 @@
-import * as wd from "../lib/wd.js";
+import * as wd from "../../lib/wd.js";
 
-// Single catch-all for the whole WebDracin backend so the Hobby plan's
-// 12-function cap is never an issue (this + dramabox-proxy = 2 functions).
-// URLs stay identical to the old per-file layout: /api/<action>?... .
-// Exact file api/dramabox-proxy.js still takes precedence for its own route.
+// Single function for the whole WebDracin backend (Hobby plan caps at 12
+// functions; this + dramabox-proxy = 2). Reached via vercel.json rewrites:
+//   /api/<action>  →  /api/wd/<action>   (query string preserved)
 export const config = { maxDuration: 60 };
 
 const ROUTES = {
@@ -26,8 +25,7 @@ export default async function handler(req, res) {
   if (wd.handleCors(req, res)) return;
   if (!wd.requireGet(req, res)) return;
 
-  const parts = req.query.all;
-  const action = Array.isArray(parts) ? parts[0] : parts;
+  const action = req.query.action;
   const fn = ROUTES[action];
   if (!fn) {
     return wd.send(res, 404, {
