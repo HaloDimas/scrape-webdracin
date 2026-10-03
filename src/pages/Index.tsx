@@ -41,12 +41,16 @@ export default function Index() {
   const [dracin, setDracin] = useState<Drama[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // WebDracin Sub Indo row — loads independently of the home cache
+  // WebDracin Sub Indo row — loads independently of the home cache.
+  // NOTE: the legacy third-party upstreams (sansekai/drapi/melolo-azure)
+  // are currently down, so the hero + rows fall back to Dracin content.
   useEffect(() => {
     fetchWdList("", 12)
       .then((cards) => setDracin(cards.map(wdToDrama)))
       .catch(() => setDracin([]));
   }, []);
+
+  const heroDrama = trending[0] || dracin[0] || null;
 
   useEffect(() => {
     async function loadData() {
@@ -140,7 +144,7 @@ export default function Index() {
   return (
     <div className="min-h-screen bg-background pb-safe">
       {/* Hero Section */}
-      <HeroSection drama={trending[0] || null} />
+      <HeroSection drama={heroDrama} />
 
       {/* Tab Navigation */}
       <div className="sticky top-0 z-40 bg-background/80 backdrop-blur-md">
