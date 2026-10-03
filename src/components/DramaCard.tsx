@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Heart, Play, CheckCircle } from "lucide-react";
 import { Drama, DramaSource } from "@/lib/api";
+import { imgFallback } from "@/lib/webdracin";
 import { isFavorite, addFavorite, removeFavorite, getContinueWatching } from "@/lib/storage";
 import { useState, useMemo } from "react";
 import { cn } from "@/lib/utils";
@@ -66,10 +67,9 @@ export function DramaCard({
             alt={drama.title}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
             loading="lazy"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.style.display = 'none';
-            }}
+            decoding="async"
+            referrerPolicy="no-referrer"
+            onError={(e) => imgFallback(e, drama.poster)}
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-muted">

@@ -19,6 +19,7 @@ import {
   saveDramaToCache,
 } from "@/lib/storage";
 import { getEpisodesCache, setEpisodesCache } from "@/hooks/use-home-cache";
+import { imgFallback } from "@/lib/webdracin";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 
@@ -158,6 +159,9 @@ export default function DramaDetail() {
           src={drama.poster}
           alt={drama.title}
           className="h-full w-full object-cover"
+          decoding="async"
+          referrerPolicy="no-referrer"
+          onError={(e) => imgFallback(e, drama.poster)}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
 
@@ -273,6 +277,10 @@ export default function DramaDetail() {
                           src={episode.thumbnail || drama.poster}
                           alt={episode.title || `Episode ${episode.number}`}
                           className="h-full w-full object-cover"
+                          loading="lazy"
+                          decoding="async"
+                          referrerPolicy="no-referrer"
+                          onError={(e) => imgFallback(e, episode.thumbnail || drama.poster)}
                         />
                       ) : (
                         <div className="flex h-full w-full items-center justify-center">

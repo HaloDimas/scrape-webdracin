@@ -1,6 +1,7 @@
 // WebDracin client — talks to the serverless /api/* functions in this repo
 // (scraped from webdracin.com: 25 platforms, Sub Indo). Works both locally
 // (node server.cjs) and on Vercel (api/*.js). No Supabase needed.
+import type { SyntheticEvent } from "react";
 import type { Drama, Episode, SearchResult, SubtitleTrack } from "./api";
 
 export interface WdCard {
@@ -77,10 +78,31 @@ export const fetchWdEpisode = (dramaId: string, ep: number, eid: string) =>
   );
 
 // Prefer `cover` (web-friendly) over `cover_real` (often raw .heic).
-// Route through /api/img so repeat loads hit the edge cache.
+// Covers are served DIRECT from upstream — no /api/img hop, so grids load
+// fast (no serverless cold start, no double fetch). The proxy remains only
+// as an onError fallback (see wdImgProxy) for hotlink-blocked hosts.
 export function wdPoster(c: Pick<WdCard, "cover" | "cover_real">): string {
-  const raw = c.cover || c.cover_real || "";
-  return raw ? `/api/img?url=${encodeURIComponent(raw)}` : "";
+  return c.cover || c.cover_real || "";
+}
+
+// Fallback proxy for covers that refuse direct hotlinking.
+export function wdImgProxy(url: string): string {
+  return url ? `/api/img?url=${encodeURIComponent(url)}` : "";
+}
+
+// Shared <img onError> handler: retry once via proxy, then hide.
+// Usage: onError={(e) => imgFallback(e, posterUrl)}
+export function imgFallback(
+  e: SyntheticEvent<HTMLImageElement>,
+  originalUrl: string
+): void {
+  const target = e.target as HTMLImageElement;
+  if (!target.dataset.proxied && originalUrl && !originalUrl.startsWith("/api/")) {
+    target.dataset.proxied = "1";
+    target.src = wdImgProxy(originalUrl);
+  } else {
+    target.style.display = "none";
+  }
 }
 
 export function wdToDrama(c: WdCard): Drama {
@@ -99,7 +121,7 @@ export function wdEpisodes(w: WdWatch): Episode[] {
     id: String(e.id),
     number: e.number,
     title: e.label || `Episode ${e.number}`,
-    thumbnail: e.poster ? `/api/img?url=${encodeURIComponent(e.poster)}` : wdPoster(w),
+    thumbnail: e.poster || wdPoster(w),
   }));
 }
 
