@@ -1,0 +1,24 @@
+# Deps / build output
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Vercel
+.vercel/
+
+# Scraper + local server caches
+cache/
+out/
+
+# Env (never commit secrets — see .env.example)
+.env
+.env.*.local
+
+# Logs / editor
+logs/
+*.log
+npm-debug.log*
+.vscode/*
+.idea/
+.DS_Store/

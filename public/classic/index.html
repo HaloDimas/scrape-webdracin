@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>DracinPlay — Nonton Drama Pendek Sub Indo Gratis</title>
+<meta name="description" content="Streaming drama pendek China (dramabox, melolo, reelshort & 25 platform) dengan subtitle Indonesia. Pilih episode, langsung putar.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23e11d48'/><polygon points='38,28 72,50 38,72' fill='white'/></svg>">
+<link rel="stylesheet" href="/classic/style.css?v=3">
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1" defer></script>
+<script src="/classic/app.js?v=3" defer></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="logo" href="#/">▶ Dracin<span>Play</span></a>
+  <form id="searchForm" class="search" autocomplete="off">
+    <input id="searchInput" type="search" placeholder="Cari judul drama… mis. cinta, ratu, balas dendam" aria-label="Cari drama">
+    <button type="submit" title="Cari">⌕</button>
+  </form>
+  <nav class="topnav">
+    <a href="#/" id="navHome" class="active">Beranda</a>
+    <a href="#/favorit">Favorit <b id="favCount">0</b></a>
+  </nav>
+</header>
+
+<div id="platformBar" class="platforms"><div class="skel-row"></div></div>
+
+<main>
+  <!-- HOME -->
+  <section id="view-home">
+    <div id="hero" class="hero hidden"></div>
+    <div id="continueRow" class="row hidden"><h2>Lanjutkan Nonton</h2><div id="continueGrid" class="grid"></div></div>
+    <div class="rowhead"><h2 id="gridTitle">Populer Hari Ini</h2><span id="gridMeta" class="meta"></span></div>
+    <div id="grid" class="grid"></div>
+    <div id="gridEmpty" class="empty hidden">Tidak ada hasil. Coba kata kunci atau platform lain.</div>
+    <div class="loadmore"><button id="btnMore">Muat Lebih Banyak</button></div>
+  </section>
+
+  <!-- DETAIL -->
+  <section id="view-detail" class="hidden">
+    <button class="back" data-back>← Kembali</button>
+    <div id="detailBox"></div>
+  </section>
+
+  <!-- WATCH -->
+  <section id="view-watch" class="hidden">
+    <button class="back" data-back>← Kembali</button>
+    <div id="watchBox"></div>
+  </section>
+
+  <!-- FAVORIT -->
+  <section id="view-favorit" class="hidden">
+    <div class="rowhead"><h2>Favorit Saya</h2><span class="meta">tersimpan di browser ini</span></div>
+    <div id="favGrid" class="grid"></div>
+    <div id="favEmpty" class="empty">Belum ada favorit. Ketuk ♡ pada drama untuk menyimpan.</div>
+  </section>
+</main>
+
+<footer>
+  <p>Sumber data: <b>webdracin.com</b> via scraper lokal <code>scrape.js</code> (tanpa dependency). Untuk riset &amp; arsip pribadi — patuhi syarat layanan &amp; hak pemegang konten.</p>
+  <p>Video &amp; subtitle di-proxy seperlunya agar bisa diputar. Jika 1 episode <i>Server null</i>, coba episode / platform lain.</p>
+</footer>
+
+<div id="toast" class="toast hidden"></div>
+</body>
+</html>

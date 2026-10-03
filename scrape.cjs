@@ -150,6 +150,7 @@ async function episode(dramaId, ep, eid) {
 }
 
 (async () => {
+  if (require.main !== module) return;
   const [mode, a, b, c] = process.argv.slice(2);
   const opt = (k, d) => { const i = process.argv.indexOf("--" + k); return i > -1 ? process.argv[i + 1] : d; };
   const save = (f, data) => {
@@ -209,3 +210,5 @@ async function episode(dramaId, ep, eid) {
     process.exit(1);
   }
 })();
+
+module.exports = { getPlatforms, list, all, search, drama, watch, episode, BASE };
