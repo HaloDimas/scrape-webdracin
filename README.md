@@ -62,22 +62,11 @@ Lihat `.env.example`.
 
 ```
 .
-├── api/                      # Vercel serverless functions (Node ESM)
-│   ├── _lib/common.js        # CORS + helper kirim JSON + preset cache edge
-│   ├── platforms.js          # GET /api/platforms
-│   ├── platform-status.js    # GET /api/platform-status
-│   ├── list.js               # GET /api/list?platform=&limit=
-│   ├── all.js                # GET /api/all?limitPerPlatform=
-│   ├── search.js             # GET /api/search?q=&limit=
-│   ├── drama.js              # GET /api/drama?slug=
-│   ├── watch.js              # GET /api/watch?slug=
-│   ├── episode.js            # GET /api/episode?id=&ep=&eid= (signed URL, cache singkat)
-│   ├── full.js               # GET /api/full?slug=&eps=
-│   ├── proxy.js              # GET /api/proxy?url=&type= (subtitle/cover/video anti-CORS)
-│   ├── img.js                # GET /api/img?url= (proxy cover, edge-cache 7 hari)
-│   ├── dramabox-proxy.js     # GET /api/dramabox-proxy?... (pengganti Supabase edge fn)
-│   ├── health.js             # GET /api/health
-│   └── cache-clear.js        # GET /api/cache-clear (no-op kompatibilitas)
+├── api/                      # Vercel serverless functions: CUMA 2 (aman untuk Hobby plan!)
+│   ├── [...all].js          # Catch-all router → semua endpoint /api/* webdracin di bawah
+│   └── dramabox-proxy.js     # GET /api/dramabox-proxy?... (pengganti Supabase edge fn)
+├── lib/
+│   └── wd.js                 # Implementasi backend webdracin (di luar api/ agar tidak dihitung jadi function)
 ├── src/                      # Frontend DramaStream (React + Vite + Tailwind + shadcn)
 │   ├── lib/api.ts            # Client API drama (default via /api/dramabox-proxy)
 │   ├── lib/webdracin.ts      # Client baru: /api/* scraper webdracin
